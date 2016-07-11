@@ -28,18 +28,25 @@ if [ ! -d "$BIN_DIR" ]; then
 fi
 
 "$WGET_CMD" -O "$DOWNLOADED_FLE" "$DOWNLOAD_URL"
-md5=$(md5sum ${DOWNLOADED_FLE} | awk '{ print $1 }')
 
-if [ "$md5" != "$GCLOUD_CHECKSUM" ]; then
-  echo "Checksum of downloaded file was not expected value of $GCLOUD_CHECKSUM" 1>&2
-  exit 1
-fi
+#md5=$(md5sum ${DOWNLOADED_FLE} | awk '{ print $1 }')
+#if [ "$md5" != "$GCLOUD_CHECKSUM" ]; then
+#  echo "Checksum of downloaded file was not expected value of $GCLOUD_CHECKSUM" 1>&2
+#  exit 1
+#fi
 
 "$TAR_CMD" -xzf "$DOWNLOADED_FLE" -C "$BIN_DIR"
-if [ ! -f "BIN_DIR/google-cloud-sdk/install.sh" ]; then
+if [ ! -f "$BIN_DIR/google-cloud-sdk/install.sh" ]; then
   echo "gcloud install script was not found!" 1>&2
   exit 1
 fi
 
 "$BIN_DIR/google-cloud-sdk/install.sh" --usage-reporting true --command-completion true --path-update true --rc-path "$HOME/.bashrc" --quiet 
 rm "$DOWNLOADED_FLE"
+
+if [ ! -f "$BIN_DIR/google-cloud-sdk/bin/gcloud" ]; then
+  echo "new gcloud executable was not found!" 1>&2
+  exit 1
+fi
+
+"$BIN_DIR/google-cloud-sdk/bin/gcloud" components install kubectl
