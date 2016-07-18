@@ -49,4 +49,4 @@ if [ ! -f "$BIN_DIR/google-cloud-sdk/bin/gcloud" ]; then
   exit 1
 fi
 
-"$BIN_DIR/google-cloud-sdk/bin/gcloud" components install kubectl
+"$BIN_DIR/google-cloud-sdk/bin/gcloud" components install kubectl --quiet
