@@ -13,7 +13,7 @@ readonly BIN_DIR="$HOME/bin"
 readonly TAR_CMD=$(which tar)
 readonly WGET_CMD=$(which wget)
 
-readonly GCLOUD_VERSION="117.0.0"
+readonly GCLOUD_VERSION="156.0.0"
 readonly GCLOUD_CHECKSUM="34a59db03cdc5ef7fc32ef90b98eaf9e4deff83f"
 readonly DOWNLOAD_URL="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$GCLOUD_VERSION-linux-x86_64.tar.gz"
 readonly DOWNLOADED_FLE="$TMP_DIR/gcloud.tar.gz"
